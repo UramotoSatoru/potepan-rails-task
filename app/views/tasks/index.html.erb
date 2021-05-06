@@ -1,0 +1,44 @@
+<h3>スケジュール一覧</h3>
+<p id="notice"><%= notice %></p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">タイトル</th>
+      <th scope="col">開始日</th>
+      <th scope="col">終了日</th>
+      <th scope="col">終日</th>
+      <th scope="col">スケジュール更新日時</th>
+      <th scope="col">確認</th>
+      <th scope="col">編集</th>
+      <th scope="col">削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td scope="row"><%= task.id %></td>
+        <td><%= task.title %></td>
+        <td><%= I18n.l(task.startday, format: :long) %></td>
+        <td><%= I18n.l(task.endday, format: :long) %></td>
+        <% if task.allday %>
+          <% allday = "○" %>
+        <% else %>
+          <% allday = "" %>
+        <% end %>
+        <td class ="allday" ><%= allday %></td>
+        <td><%= I18n.l(task.updated_at, format: :long) %></td>
+        <td><%= link_to '確認', task %></td>
+        <td><%= link_to '編集', edit_task_path(task) %></td>
+        <td><%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<footer>
+    <h1>現在の日時：<%= I18n.l(Date.today, format: :long) %> スケジュール合計：<%= Task.count %></h1>
+</footer>
+
+<br>
+
+<%= link_to 'スケジュール新規登録', new_task_path %>

@@ -1,0 +1,33 @@
+<%= form_with(model: task, local: true) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2>スケジュールを登録できませんでした</h2>
+
+      <ul>
+      <% task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="table table-bordered ">
+    <tbody>
+      <tr><th scope="col">タイトル</th><td><%= form.text_field :title %></td></tr>
+      <tr><th scope="col">開始日</th><td><%= form.date_field :startday %></td></tr>
+      <tr><th scope="col">終了日</th><td><%= form.date_field :endday %></td></tr>
+      <tr><th scope="col">終日</th><td><%= form.check_box :allday %><br>終日の場合はチェックを入れます</td></tr>
+      <tr><th scope="col">メモ</th><td><%= form.text_area :memo %></td></tr>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= form.submit "#{@form_submit_name}"%>
+  </div>
+<% end %>
+
+
+
+
+
+
