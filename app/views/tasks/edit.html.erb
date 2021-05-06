@@ -1,0 +1,8 @@
+<h1>スケジュール編集</h1>
+<% @form_submit_name = "スケジュールの編集を完了する" %>
+<%= render 'form', task: @task %>
+
+<%= link_to 'スケジュール一覧に戻る', tasks_path %>
+<footer>
+    <h1>現在の日時：<%= I18n.l(Date.today, format: :long) %></h1>
+</footer>
